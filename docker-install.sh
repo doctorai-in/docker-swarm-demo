@@ -30,13 +30,13 @@ read -p 'NodeName: ' user
 sudo adduser $user --disabled-password
 sudo passwd $user
 sudo usermod -aG sudo $user
-sudo su - $user
-mkdir .ssh
-chmod 700 .ssh
-touch .ssh/authorized_keys
-chmod 600 .ssh/authorized_keys
-echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCAzatTc18t5WZlyaZ5M37ANq4xVOHVfY8bXZImduJvWMarCOVOxATlVx6FMpHgX4w4viCVHopYVGN2VmaLIAkvb+kQWq17I3nBaO0L2Npxw9vbEDbmiD83ZziBAtDBntGUzV8Wh7VFwhgmAGdHYg6bGmRV0vDjF0J1VguSKc3DfeBztxza0F06m+ehlsZYgvHzMqfpbbOse2yiQraNiWbC+bg3hVI2vikQ87npmOavBWvGjvAPct9TL3+kkgJUA6IJ6aJAh2JxAt2+KHt3kJfbIn6jhRXysKLo897wHVWXUaqBhfMgfV6HvvGJR8O+3VVr7JTWYpcgRJAr' >>~/.ssh/authorized_keys
+mkdir /home/$user/.ssh
+chmod 700 /home/$user/.ssh
+touch /home/$user/.ssh/authorized_keys
+chmod 600 /home/$user/.ssh/authorized_keys
+echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCAzatTc18t5WZlyaZ5M37ANq4xVOHVfY8bXZImduJvWMarCOVOxATlVx6FMpHgX4w4viCVHopYVGN2VmaLIAkvb+kQWq17I3nBaO0L2Npxw9vbEDbmiD83ZziBAtDBntGUzV8Wh7VFwhgmAGdHYg6bGmRV0vDjF0J1VguSKc3DfeBztxza0F06m+ehlsZYgvHzMqfpbbOse2yiQraNiWbC+bg3hVI2vikQ87npmOavBWvGjvAPct9TL3+kkgJUA6IJ6aJAh2JxAt2+KHt3kJfbIn6jhRXysKLo897wHVWXUaqBhfMgfV6HvvGJR8O+3VVr7JTWYpcgRJAr' >>/home/$user/.ssh/authorized_keys
 
 echo ************SETTING UP DOCKER AS NON-ROOT*************
-sudo usermod -aG docker $USER
+sudo usermod -aG docker $user
 newgrp docker
+sudo su - $user
