@@ -30,11 +30,6 @@ read -p 'NodeName: ' user
 sudo adduser $user --disabled-password
 sudo passwd $user
 sudo usermod -aG sudo $user
-sudo mkdir /home/$user/.ssh
-sudo chmod 700 /home/$user/.ssh
-sudo touch /home/$user/.ssh/authorized_keys
-sudo chmod 600 /home/$user/.ssh/authorized_keys
-sudo cp -f authorized_keys /home/$user/.ssh/authorized_keys
 echo ************SETTING UP DOCKER AS NON-ROOT*************
 sudo usermod -aG docker $user
 sudo su - $user
