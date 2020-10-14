@@ -1,0 +1,30 @@
+# Copy docker installation script i.e .sh file to ec2 instance from local terminal
+scp -i path/to/pem path/to/file username@PublicDNS:/home/username
+sudo scp -i docker_s.pem /home/omen/Downloads/vote_app_edureka/docker-stack.yml ubuntu@ec2-54-86-121-178.compute-1.amazonaws.com:/home/ubuntu
+sudo scp -i docker_s.pem /home/omen/docker-install.sh ubuntu@ec2-54-86-121-178.compute-1.amazonaws.com:/home/ubuntu
+
+ssh-keygen -y -f filename.pem
+
+# Initializing Docker Swarm 
+sudo docker swarm init --advertise-addr 54.86.12
+
+# Show docker swarm node
+sudo docker node ls
+
+# Runing vote app
+docker stack deploy --compose-file docker-stack.yml vote
+sudo docker service ls
+sudo docker service ps 23j157yze86sqfhyjgjbos8me
+
+sudo docker swarm leave --force
+sudo docker node rm  -f nodename
+
+# Get Join token 
+sudo docker swarm join-token worker
+
+# Deploy application on swarm cluster
+sudo service create --name default-app --replicas 3 -p 80:80 nginx:latest
+
+sudo docker service ls
+sudo docker service ps 23j157yze86sqfhyjgjbos8me
+
