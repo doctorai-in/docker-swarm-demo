@@ -28,7 +28,8 @@ echo **********INSTALLATION FINISHED*************
 echo **********setup username***************
 read -p 'NodeName: ' user
 sudo adduser $user --disabled-password
-sudo passwd $user 
+sudo passwd $user
+sudo usermod -aG sudo $user
 sudo su - $user
 mkdir .ssh
 chmod 700 .ssh
